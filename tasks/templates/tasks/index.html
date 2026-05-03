@@ -1,0 +1,36 @@
+{% extends "tasks/layout.html" %}
+{% block body %}
+    <h1>Tasks:</h1>
+    <ul>
+        {% for original_index, task in tasks %}
+            <li style="margin-bottom: 8px; {% if task.done %}text-decoration: line-through; color: gray;{% endif %}">
+
+                {# Priority Badge #}
+                <span style="
+                    background-color: {% if task.priority >= 8 %}#ef4444{% elif task.priority >= 5 %}#f97316{% else %}#22c55e{% endif %};
+                    color: white;
+                    border-radius: 4px;
+                    padding: 1px 6px;
+                    font-size: 0.8em;
+                    margin-right: 6px;
+                ">P{{ task.priority }}</span>
+
+                {{ task.task }}
+
+                {# Toggle Done Button #}
+                <a href="{% url 'tasks:toggle' original_index %}" style="margin-left: 10px; font-size: 0.85em;">
+                    {% if task.done %}↩ Undo{% else %}✔ Done{% endif %}
+                </a>
+
+                {# Delete Button #}
+                <a href="{% url 'tasks:delete' original_index %}" style="margin-left: 8px; color: red; font-size: 0.85em;">
+                    🗑 Delete
+                </a>
+
+            </li>
+        {% empty %}
+            <li>No tasks. Add one!</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'tasks:add' %}">➕ Add new task</a>
+{% endblock %}
