@@ -20,10 +20,10 @@ A lightweight task management web app built with **Python** and **Django**.
 ## 📁 Project Structure
 
 ```
-cs50/
+taskmanager/
 ├── manage.py
 ├── db.sqlite3
-├── cs50/                   # Project configuration
+├── taskmanager/            # Project configuration
 │   ├── settings.py
 │   └── urls.py
 └── tasks/                  # Tasks app
